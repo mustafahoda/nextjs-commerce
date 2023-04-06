@@ -28,8 +28,6 @@ export const handler: SWRHook<SearchProductsHook> = {
     ])
 
     const { categoryId, brandId, search, sort = 'latest-desc' } = input
-    console.log('input')
-    console.log(input)
     const mappedSort = sortMap.get(sort)
     const { results, count: found } = await fetch({
       query: 'products',
@@ -41,8 +39,6 @@ export const handler: SWRHook<SearchProductsHook> = {
         sort: mappedSort,
       },
     })
-
-    console.log({ results, count: found })
 
     const products = results.map((product: SwellProduct) =>
       normalizeProduct(product)

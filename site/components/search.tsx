@@ -29,6 +29,7 @@ import {
   getDesignerPath,
   useSearchMeta,
 } from '@lib/search'
+import { log } from 'console'
 
 export default function Search({ categories, brands }: SearchPropsType) {
   const [activeFilter, setActiveFilter] = useState('')
@@ -47,6 +48,21 @@ export default function Search({ categories, brands }: SearchPropsType) {
   const activeCategory = categories.find((cat: any) => cat.slug === category)
   const activeBrand = brands.find((b: Brand) => b.slug === brand)
 
+  // console.log('activeCategory')
+  // console.log(activeCategory)
+
+  // console.log('activeBrand')
+  // console.log(activeBrand)
+
+  // console.log('searchquery')
+  // console.log({
+  //   search: typeof q === 'string' ? q : '',
+  //   categoryId: activeCategory?.id,
+  //   brandId: activeBrand?.id,
+  //   sort: typeof sort === 'string' ? sort : '',
+  //   locale,
+  // })
+
   const { data, error } = useSearch({
     search: typeof q === 'string' ? q : '',
     categoryId: activeCategory?.id,
@@ -54,6 +70,9 @@ export default function Search({ categories, brands }: SearchPropsType) {
     sort: typeof sort === 'string' ? sort : '',
     locale,
   })
+
+  // console.log('data')
+  // console.log(data)
 
   if (error) {
     return <div>Failed to load</div>
@@ -234,7 +253,7 @@ export default function Search({ categories, brands }: SearchPropsType) {
                             'block lg:inline-block px-4 py-2 lg:p-0 lg:my-2 lg:mx-4'
                           }
                         >
-                          All Designersasd
+                          All Designers
                         </a>
                       </Link>
                     </li>

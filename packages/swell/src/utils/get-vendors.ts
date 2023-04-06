@@ -8,7 +8,7 @@ const getVendors = async (config: SwellConfig) => {
     id: v,
     name: v,
     slug: v.replace(/\s+/g, '-').toLowerCase(),
-    path: `/${v}`,
+    path: `/${v}`.toLowerCase(),
   }))
 }
 

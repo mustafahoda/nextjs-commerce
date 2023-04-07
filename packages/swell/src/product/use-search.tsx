@@ -35,7 +35,6 @@ export const handler: SWRHook<SearchProductsHook> = {
       method: 'list',
       variables: {
         category: categoryId,
-        // brand: brandId,
         search,
         sort: mappedSort,
         ...(brandId != null && { where: { attributes: { brand: brandId } } }),

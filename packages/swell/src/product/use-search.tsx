@@ -29,14 +29,16 @@ export const handler: SWRHook<SearchProductsHook> = {
 
     const { categoryId, brandId, search, sort = 'latest-desc' } = input
     const mappedSort = sortMap.get(sort)
+
     const { results, count: found } = await fetch({
       query: 'products',
       method: 'list',
       variables: {
         category: categoryId,
-        brand: brandId,
+        // brand: brandId,
         search,
         sort: mappedSort,
+        ...(brandId != null && { where: { attributes: { brand: brandId } } }),
       },
     })
 

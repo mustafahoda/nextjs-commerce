@@ -4,9 +4,6 @@ import { handleFetchResponse } from './utils'
 import swell from './swell'
 
 const fetcher: Fetcher = async ({ method = 'get', variables, query }) => {
-  console.log('----FETCHER----')
-  console.log({ method: 'get', variables, query })
-
   async function callSwell() {
     if (Array.isArray(variables)) {
       const arg1 = variables[0]

@@ -41,23 +41,15 @@ export default function Search({ categories, brands }: SearchPropsType) {
   // in the same way of products, it's better to ignore the search input if one
   // of those is selected
   const query = filterQuery({ sort })
-
   let { pathname, category, brand } = useSearchMeta(asPath)
 
-  // replaces any instances of URL Space with slug safe pattern
-  // This logic should ideally live in getSlug but unable to incorporate
+  // replaces any instances of URL Space ("%20") with slug safe pattern
   if (brand?.includes('%20')) {
     brand = brand.replace('%20', '-')
   }
+
   const activeCategory = categories.find((cat: any) => cat.slug === category)
   const activeBrand = brands.find((b: Brand) => b.slug === brand)
-
-  console.log('------brands----')
-  console.log(brands)
-  console.log(brand)
-
-  console.log('---active-brand---')
-  console.log(activeBrand)
 
   const { data, error } = useSearch({
     search: typeof q === 'string' ? q : '',
